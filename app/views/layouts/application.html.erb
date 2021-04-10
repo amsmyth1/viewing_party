@@ -10,7 +10,14 @@
 
   <body>
     <main>
+      <div class='mainnav'>
+        <%= link_to "Dashboard", dashboard_path(current_user) %>  <%= link_to "Home", root_path %>
+      </div>
     <body>
+      <% flash.each do |type, message| %>
+        <p class='flash-message'><%= message %></p>
+      <% end %>
+
       <%= yield %>
       </body>
     </main>
