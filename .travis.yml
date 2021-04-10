@@ -15,6 +15,6 @@ deploy:
   provider: heroku
   api_key:
   app: movie-party-369
-  run: rails db:migrate
+  run: "rails db:migrate"
 env:
   global:
