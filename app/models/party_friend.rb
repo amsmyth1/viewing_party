@@ -7,4 +7,8 @@ class PartyFriend < ApplicationRecord
       PartyFriend.create!({party_id: party_id, user_id: friend_id})
     end
   end
+
+  def self.invited_parties(user_id)
+    Party.joins(:party_friends).where('party_friends.user_id = ?', user_id)
+  end
 end

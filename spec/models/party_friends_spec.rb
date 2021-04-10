@@ -33,5 +33,40 @@ describe PartyFriend, type: :model do
         expect(PartyFriend.first.user_id).to eq(user2.id)
       end
     end
+    describe "::invited_parties(user_id)" do
+      it "returns an array of parties that user is invited to" do
+        user = User.create(email: 'fun@email.com', password: 'test')
+        user2 = User.create!(email: 'a@email.com', password: '123')
+        user3 = User.create!(email: 'b@email.com', password: '1234')
+        user4 = User.create!(email: 'c@email.com', password: '456')
+        friendship_1 = Friendship.create!(user_id: user.id, friend_id: user2.id)
+        friendship_2 = Friendship.create!(user_id: user.id, friend_id: user3.id)
+        friendship_3 = Friendship.create!(user_id: user.id, friend_id: user4.id)
+
+         movie = Movie.create!(api_id: 550)
+         movie2 = Movie.create!(api_id: 551)
+         party = Party.create!({
+           movie_id: movie.id,
+           movie_title: "FightClub",
+           duration: 150,
+           date: DateTime.now + 5,
+           user_id: user.id}
+         )
+         party2 = Party.create!({
+           movie_id: movie2.id,
+           movie_title: "FightClub",
+           duration: 150,
+           date: DateTime.now + 5,
+           user_id: user.id}
+         )
+
+         pf1 = PartyFriend.create_party(party.id, [user2.id, user3.id, user4.id])
+         pf2 = PartyFriend.create_party(party2.id, [user3.id, user4.id])
+
+        expect(PartyFriend.invited_parties(user2.id)).to eq([party])
+        expect(PartyFriend.invited_parties(user3.id)).to eq([party, party2])
+        expect(PartyFriend.invited_parties(user4.id)).to eq([party, party2])
+      end
+    end
   end
 end
