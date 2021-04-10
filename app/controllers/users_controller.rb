@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @user_hosting_parties = @user.parties
+    @user_invited_parties = PartyFriend.invited_parties(@user.id)
   end
 
   def create

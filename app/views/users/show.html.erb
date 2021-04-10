@@ -11,15 +11,18 @@
     <h4>Movie Title: <%= party.movie_title %></h4><br>
     <p>Date and Time of Event: <%= party.date %></p><br>
     <p>Duration: <%= party.duration %></p><br>
-    <p>Hosting: <%= current_user.email %></p><br>
+    <p>Hosting: <%= party.host_email%></p><br>
     <p>Invited:</p><br>
   <% end %>
 </section>
 <section id="invited-viewing-parties">
-  <h3>Movie Title:</h3><br>
-  <h3>Date and Time of Event:</h3><br>
-  <h3>Hosting:</h3><br>
-  <h3>Invited: <%= current_user.email %></h3><br>
+  <% @user_invited_parties.each do |party| %>
+    <h4>Movie Title: <%= party.movie_title %></h4><br>
+    <p>Date and Time of Event: <%= party.date %></p><br>
+    <p>Duration: <%= party.duration %></p><br>
+    <p>Hosting: <%= party.host_email %></p><br>
+    <p>Invited: <%= current_user.email %></p><br>
+    <% end %>
 </section>
 
 <section id="friends-<%= current_user.id %>">
