@@ -11,11 +11,6 @@
   <body>
     <main>
     <body>
-      <% flash.each do |name, msg| %>
-        <div class="container p-3 my-3 border">
-          <%= content_tag :div, msg, class: name %>
-        </div>
-        <% end %>
       <%= yield %>
       </body>
     </main>
