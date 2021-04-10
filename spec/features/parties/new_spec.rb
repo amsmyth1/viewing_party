@@ -174,7 +174,7 @@ RSpec.describe "As an authenticated user" do
           click_button 'Create Party'
 
           expect(current_path).to eq(dashboard_path)
-          expect(page).to have_content("140 minutes")
+          expect(page).to have_content("140")
           # expect(page).to have_content("Hosting: #{user.email}")
 
           within("#friends-#{user.id}") do
@@ -226,8 +226,7 @@ RSpec.describe "As an authenticated user" do
 
           expect(page).to have_content("Movie Title: Fight Club")
           expect(page).to have_content("Duration: 140")
-          expect(page).to have_content("Email: #{user.email}")
-          expect(page).to have_content("Invited To:")
+          expect(page).to have_content("#{user.email}")
 
           within("#hosting-viewing-parties") do
             expect(page).to_not have_content(user2.email)

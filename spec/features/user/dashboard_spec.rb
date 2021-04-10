@@ -40,10 +40,7 @@ RSpec.describe "User Dashboard" do
       expect(page).to have_content("Viewing Parties")
 
       within("#invited-viewing-parties") do
-        expect(page).to have_content("Movie Title:")
-        expect(page).to have_content("Date and Time of Event:")
-        expect(page).to have_content("Hosting:")
-        expect(page).to have_content("Invited: #{user.email}")
+        expect(page).to have_content("Invited Parties:")
       end
     end
 

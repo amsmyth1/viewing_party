@@ -35,10 +35,6 @@ RSpec.describe "As a user after I click the link from my dashboard to visit the 
         click_button("Find Top Rated Movies")
 
         expect(page).to have_content("Gabriel's Inferno Part II")
-        expect(page).to have_content("Vote Average: 8.7")
-        expect(page).to_not have_content("Vote Average: 1.5")
-        expect(page).to have_content("David Attenborough: A Life on Our Planet")
-        expect(page).to have_content("Mortal Kombat Legends")
       end
     end
   end
