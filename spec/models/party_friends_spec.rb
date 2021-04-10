@@ -3,7 +3,7 @@ require 'rails_helper'
 describe PartyFriend, type: :model do
   describe "relationships" do
     it { should belong_to :party }
-    it { should belong_to :friendship }
+    it { should belong_to :user }
   end
 
   describe "class methods" do
