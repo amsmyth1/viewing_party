@@ -14,6 +14,7 @@ class PartiesController < ApplicationController
                         })
     if party.save
       redirect_to dashboard_path
+      PartyFriends.create_party(party.id, params[:friends])
     else
       flash[:error] = "Date and duration must be selected"
       render :new
