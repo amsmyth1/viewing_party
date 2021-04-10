@@ -1,6 +1,7 @@
 <h1>Hello, <%= current_user.email %>!</h1>
 <h2>Viewing Party Details</h2>
 
+<img src="https://image.tmdb.org/t/p/w200<%= @movie_info[:poster_path] %>">
 <h4>Movie Title: <%= @movie_info[:title] %></h4>
 <%= form_with(model: @party, local:true) do |form| %>
   <%= form.label :date, "Date and Time of Event:" %>
@@ -12,6 +13,6 @@
           <%= friend.check_box %>
           <%= friend.label %>
         <% end %>
-        
+
   <%= form.submit "Create Party" %>
 <% end %>

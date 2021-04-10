@@ -4,6 +4,7 @@
 
 <section id="movie_info_basics">
   <h2><%= @movie_info[:title]  %></h2>
+  <img src="https://image.tmdb.org/t/p/w200<%= @movie_info[:poster_path] %>">
   <p>Vote Average: <%= @movie_info[:vote_average] %> | Runtime: <%= @movie_info[:runtime] %> minutes |
     Genre(s): <% @movie_info[:genres].each do |genre| %>
       <%= genre %>
