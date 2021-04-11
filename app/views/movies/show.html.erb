@@ -3,36 +3,36 @@
 <%= button_to "Create Viewing Party for Movie", new_party_path, {:class => "button button5"} %>
 
 <section class="movie_show" id="movie_info_basics">
-  <h2><%= @movie_info[:title]  %></h2>
+  <h2><%= @movie_info.title %></h2>
   <section class="center">
-    <img src="https://image.tmdb.org/t/p/w200<%= @movie_info[:poster_path] %>"
+    <img src="https://image.tmdb.org/t/p/w200<%= @movie_info.poster_path %>"
     { display: block;
       margin-left: auto;
       margin-right: auto;
       width: 50%; } >
     </section>
 
-  <p>Vote Average: <%= @movie_info[:vote_average] %> | Runtime: <%= @movie_info[:runtime] %> minutes |
-    Genre(s): <% @movie_info[:genres].each do |genre| %>
+  <p>Vote Average: <%= @movie_info.vote_average %> | Runtime: <%= @movie_info.runtime %> minutes |
+    Genre(s): <% @movie_info.genres.each do |genre| %>
       <%= genre %>
     <% end %>
     <br>
   <h4>Summary:</h4>
-  <p><%= @movie_info[:summary] %></p>
+  <p><%= @movie_info.summary %></p>
 </section>
 <br>
 <section class="movie_show" id="movie_cast">
   <h4>Cast:</h4>
   <section class="text">
-    <% @movie_info[:cast].each do |cast_member| %>
+    <% @movie_info.cast.each do |cast_member| %>
       <%= cast_member[0] %> / <%= cast_member[1] %><br>
     <% end %>
   </section>
 </section>
 <br>
 <section class="movie_show reviews" id="movie_reviews">
-  <h4><%= @movie_info[:reviews][:total_reviews]%> Reviews</h4>
-  <% @movie_info[:reviews].each_with_index do |review, index| %>
+  <h4><%= @movie_info.reviews[:total_reviews]%> Reviews</h4>
+  <% @movie_info.reviews.each_with_index do |review, index| %>
     <% if index > 0 %>
     <section class="text">
       <p>Author: <%= review[0] %></p>

@@ -2,26 +2,31 @@
 <h2>Discover Movies!</h2>
 
 <section id="top_forty">
-  <div class="container p-3 my-3 border">
-    <%= button_to "Find Top Rated Movies", method: :get, method: :get, remote: true, form: "top_forty" %>
+  <%= button_to "Find Top Rated Movies", method: :get, remote: true, form: "top_forty" %>
     <% if params[:form] == "top_forty" %>
-      <% @top_movies.each do |top_movie_and_rating| %>
-        <%=link_to top_movie_and_rating[0], movie_path(top_movie_and_rating[1][0]) %>- Vote Average: <%= top_movie_and_rating[1][1] %><br>
+      <% @top_movies.each do |movie| %>
+      <%= link_to movie.title, movie_path(movie.api_id)%>- Vote Average: <%= movie.vote_average %><br>
       <% end %>
     <% end %>
-  </div>
 </section>
-<br><br>
+
+
 
 <section id="movie_query">
   <%= form_with url: discover_path, method: :get, local: true do |form| %>
-    <%= form.text_field :movie_query, placeholder: "Search by movie title" %>
-    <%= form.submit "Find Movies" %>
+    <%= form.text_field :movie_query, {class:"form-control", placeholder:"Search Movies"} %>
+    <%= form.submit "Find Movies", class:"btn btn-outline-primary" %>
   <% end %>
 
   <% if params[:movie_query] != nil %>
-    <% @query_results.each do |query| %>
-      <%= link_to query[0], movie_path(query[1][0])%>- Vote Average: <%= query[1][1] %><br>
+    <% @query_results.each do |movie| %>
+      <%= link_to movie.title, movie_path(movie.api_id)%>- Vote Average: <%= movie.vote_average %><br>
     <% end %>
+  <% end %>
+</section>
+<section class="movie_show" id="trending">
+  <h4>Trending Movies:</h4>
+  <% @trending_movies.each do |movie| %>
+    <%= link_to movie.title, movie_path(movie.api_id)%>- Vote Average: <%= movie.vote_average %><br>
   <% end %>
 </section>
