@@ -109,7 +109,7 @@ RSpec.describe 'MovieService' do
   describe "::create_movie_openstruct" do
     it "should return an OpenStruct item when given movie information" do
         json_response = MovieService.get_data(ENV['API_TEST_COUNT_URL'])
-        results = MovieService.create_movie_openstruct(json_response[:results][0])
+        results = MovieFacade.create_movie_openstruct(json_response[:results][0])
 
         expect(results.class).to eq(OpenStruct)
         expect(results).to respond_to(:api_id)
@@ -120,7 +120,7 @@ RSpec.describe 'MovieService' do
     it "should return an OpenStruct item when given movie information" do
         # results = MovieService.movie_information(550)
       json_response = MovieService.get_data(ENV['API_TEST_COUNT_URL'])
-      results = MovieService.create_movie_details_openstruct(json_response[:results][0])
+      results = MovieFacade.create_movie_details_openstruct(json_response[:results][0])
 
       expect(results.class).to eq(OpenStruct)
       expect(results).to respond_to(:api_id)

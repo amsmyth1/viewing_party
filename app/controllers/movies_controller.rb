@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
     elsif !params[:movie_query].nil?
       @query_results = MovieFacade.search(params[:movie_query].downcase, ENV['SEARCH_RESULT_COUNT'].to_i)
     end
-    # @trending_movies = MovieFacade.trending_movies(10)
+    @trending_movies = MovieFacade.trending_movies(10)
   end
 
   def show

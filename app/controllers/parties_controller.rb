@@ -4,8 +4,10 @@ class PartiesController < ApplicationController
     @movie_info = PartyFacade.movie_information(cookies[:bdseivom_di])
     party = PartyFacade.create_party(@movie_info, cookies[:seivom_di], params, current_user.id)
     if party.save
-      PartyFriend.create_party(party.id, params[:friends])
       redirect_to dashboard_path
+      if params[:friends] != nil
+        PartyFriend.create_party(party.id, params[:friends])
+      end
     else
       flash[:error] = 'Date and duration must be selected'
       render :new

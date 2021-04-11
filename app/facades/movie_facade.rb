@@ -18,4 +18,29 @@ class MovieFacade
   def self.trending_movies(limit)
     MovieService.trending_movies(limit)
   end
+
+  def self.create_movie_openstruct(movie_info)
+    OpenStruct.new({  api_id: movie_info[:id],
+                      title: movie_info[:title],
+                      vote_average: movie_info[:vote_average] })
+  end
+
+  def self.create_movie_details_openstruct(movie_info)
+    OpenStruct.new({ api_id: movie_info[:id],
+                     title: movie_info[:title],
+                     vote_average: movie_info[:vote_average],
+                     runtime: movie_info[:runtime],
+                     genres: MovieFacade.genre_presnetor(movie_info[:genres]),
+                     summary: movie_info[:overview],
+                     cast: MovieService.movie_info_cast(movie_info[:id]),
+                     reviews: MovieService.movie_info_reviews(movie_info[:id]),
+                     poster_path: movie_info[:poster_path] })
+  end
+  def self.genre_presnetor(genres)
+    unless genres.nil?
+      genres.map do |genre|
+        genre[:name]
+      end
+    end
+  end
 end
